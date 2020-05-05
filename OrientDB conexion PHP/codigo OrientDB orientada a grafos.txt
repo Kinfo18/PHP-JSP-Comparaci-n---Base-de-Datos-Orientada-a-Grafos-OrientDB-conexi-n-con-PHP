@@ -1,0 +1,77 @@
+#Creacion de los nodos vertices que componen la base de datos
+create class Distribuidor extends V
+create class Caracteristicasextends V
+create class Marca extends V
+create class celular extends V
+
+#Creacion de las propiedades que almacenara cada nodo vertice
+create property Distribuidores.nit integer
+create property Distribuidores.nombre string
+create property Distribuidores.direccion string
+create property Distribuidores.contacto string
+
+create property Caracteristicas.id integer
+create property Caracteristicas.procesador string
+create property Caracteristicas.ram string
+create property Caracteristicas.alamacenamiento string
+create property Caracteristicas.bateria string
+
+create property Marca.id integer
+create property Marca.nombre string
+create property Marca.origen string
+create property Marca.fecha_fundacion date
+
+create property Celular.imei integer
+create property Celular.modelo string
+create property Celular.precio float
+create property Celular.disponibilidad boolean
+
+
+#creacion de las nodos aristas (nodos que haran de aristas (coneccion entre los nodos))
+create class Marca_distribuidor extends E
+create class Celular_caracteristicas extends E
+create class Celular_marca extends E
+
+#creacion de las propiedades de cada nodo arista
+create property Marca_distriduidor.id_marca integer
+create property Marca_distriduidor.nit_distribuidor integer
+
+create property Celular_caracterisitcas.imei_celular integer
+create property Celular_Caracteristicas.id_caracteristicas integer
+
+create property Ceulular_Marca.id_marca integer
+create property Ceulular_Marca.imei_celular integer
+
+#insersion de datos correspondinetes a los nodos vertices
+insert into Distribuidores set nit = 485035372, nombre = "Xiaomi Mi Home", direccion = "Carrera 66 calle 24a", contacto = "01 8000 112 112"
+insert into Distribuidores set nit = 830028931, nombre = "Samsung Electronics", direccion = "Carrera 7 # 113 - 43", contacto = "902 220 250"
+insert into Distribuidores set nit = 845068451, nombre = "Huawei Technologies", direccion = "Carrera 68 A 24 B 10", contacto = "(1)3768600"
+
+
+insert into Caracteristicas set id = 1001, procesador = "Kirin 740 2,3GHz", ram = "4GB", almacenamiento = "64GB", bateria = "3750mAh"
+insert into Caracteristicas set id = 1002, procesador = "Qualcomm Snapdragon 630 1.8GHz", ram = "4GB", almacenamiento = "64GB", bateria = "4000mAh"
+insert into Caracteristicas set id = 1003, procesador = "Kirin 710 2,2GHz", ram = "4GB", almacenamiento = "64GB", bateria = "4000mAh"
+
+insert into Marca set id = 2001, nombre = "Xiaomi", origen = "China", fecha_fund = "2010-06-01"
+insert into Marca set id = 2002, nombre = "Samsung s.a.s", origen = "Corea del Sur", fecha_fund = "1983-07-01"
+insert into Marca set id = 2003, nombre = "Huawei s.a", origen = "China", fecha_fund = "2006-10-01"
+
+insert into Celular set imei = 1234556, modelo = "Redmi note 5", precio = 400000, dispinibilidad = true
+insert into Celular set imei = 1324513, modelo = "Mate p20", precio = 605000, dispinibilidad = true
+insert into Celular set imei = 1315264, modelo = "Y9 2019", precio = 760000, dispinibilidad = false
+insert into Celular set imei = 4653757, modelo = "Samsung Galaxy Note A30", precio = 1900000, dispinibilidad = true
+
+#insersion de datos a las aristas (este paso une los nodos vetices)
+create edge Marca_distriduidor from @2001 to @485035372
+create edge Marca_distriduidor from @2002 to @830028931
+create edge Marca_distriduidor from @2003 to @845068451
+
+create edge Celular_caracteristicas from @1234556 to @1002
+create edge Celular_caracteristicas from @1324513 to @1001
+create edge Celular_caracteristicas from @1315264 to @1003
+create edge Celular_caracteristicas from @4653757 to @1002
+
+create edge Celular_marca from @1234556 to @2001 
+create edge Celular_marca from @1324513 to @2003 
+create edge Celular_marca from @1315264 to @2003
+create edge Celular_marca from @4653757 to @2002
