@@ -61,7 +61,7 @@ insert into Celular set imei = 1324513, modelo = "Mate p20", precio = 605000, di
 insert into Celular set imei = 1315264, modelo = "Y9 2019", precio = 760000, dispinibilidad = false
 insert into Celular set imei = 4653757, modelo = "Samsung Galaxy Note A30", precio = 1900000, dispinibilidad = true
 
-#insersion de datos a las aristas (este paso une los nodos vetices)
+#insersion de datos a las aristas (este paso une los nodos vertices)
 create edge Marca_distriduidor from @2001 to @485035372
 create edge Marca_distriduidor from @2002 to @830028931
 create edge Marca_distriduidor from @2003 to @845068451
