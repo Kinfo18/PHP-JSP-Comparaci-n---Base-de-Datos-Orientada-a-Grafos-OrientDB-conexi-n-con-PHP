@@ -12,11 +12,13 @@ Requiere
 1. Instalar el controlador PHPOrient o podemos usar composer
 
 //instalacion de composer
+
 php composer.phar install
 
 2. crear un nuevo proyecto con atributos composer y modificar las siguietes lineas:
 
 //Inicializacion del cliente
+
 $client = new PhpOrient();
 $client->configure( array(
     'username' => 'root',
@@ -28,11 +30,13 @@ $client->configure( array(
 3. Abrir base de datos:
 
 //abrir base de datos
+
 $ClusterMap = $client->dbOpen( 'CellPhoneStore', 'root', '12345678' );
 
 podemos listar las bases de datos existentes en el motor OrientDB:
 
 //listas bases de datos
+
 $client->dbList();
 
 
